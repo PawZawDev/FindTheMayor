@@ -16,15 +16,14 @@ from FindTheMayorOnClass import FindTheMayor
 class Window(QtWidgets.QMainWindow):
 
     def __init__(self):
-        self.myx=10
-        self.myy=25
-        self.mydistance=130
-        self.mysize=(100,35)
+        self.myx=10 #distance of boxes from left
+        self.myy=25 #distance of boxes from top
+        self.mydistance=130 #distance between left edges of the boxes
+        self.mysize=(100,35) #size of the boxes
 
         super().__init__()
         self.setGeometry(200,200,self.mydistance*2,self.myy*4)
         self.setWindowTitle("FindTheMayor")
-        #self.setWindowIcon(QtGui.QIcon("feed.png"))
 
         self.box_init()
         self.button_init()
@@ -33,8 +32,9 @@ class Window(QtWidgets.QMainWindow):
 
     def click_find(self):
         city=self.input_box.text()
-        answer=FindTheMayor.gui_do_magic(city)
-        self.answer_box.setText(answer)
+        #answer=FindTheMayor.gui_do_magic(city)
+        #self.answer_box.setText(answer)
+        self.answer_box.setText(FindTheMayor.gui_do_magic(city))
 
     def close_app(self):
         # print("App closed with escape")
@@ -51,7 +51,6 @@ class Window(QtWidgets.QMainWindow):
         self.answer_box.resize(self.mysize[0],self.mysize[1])
         self.answer_box.move(self.myx+self.mydistance,self.myy)
         self.answer_box.setText("Your mayor")
-        #self.answer_box.setAlignment(QtCore.Qt.AlignCenter)
         self.answer_box.setAlignment(QtCore.Qt.AlignCenter)
     
     def button_init(self):

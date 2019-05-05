@@ -40,7 +40,6 @@ while(True):
         except:
             #This is for situtions like New York
             try:
-                # city+="_city"
                 city+=" City"
                 final_url=(wiki_url+city).replace(" ","_")
                 content=desoupify(final_url)
@@ -59,7 +58,6 @@ while(True):
     dot=r"•"
     hyperlink_pattern=r"\[[0-9]*\]"
     content_table=[]
-    prez=[]
 
     check_mayor=re.search(mayor_pattern,content)
 
