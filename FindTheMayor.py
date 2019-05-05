@@ -1,14 +1,18 @@
 """
 Written by Pawel Zawierucha
 Using BeautifulSoup to scrape data from wikipedia
+
+This is a console version
 """
 
 #known issues: missouri city not working (different site layout)
 
+#logic libraries
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 import re
 
+#logic part
 def desoupify(url):
     # page=urlopen(url)
     # soup=BeautifulSoup(page,"html.parser")
@@ -29,15 +33,9 @@ while(True):
         city=re.sub(" +"," ",city)
         #capitalize first letter of every word
         city=city.title()
-        # #change spaces for the sake of url
-        # city=city.replace(" ","_")
 
         final_url=(wiki_url+city).replace(" ","_")
         try:
-            # page=urlopen(final_url)
-            # soup=BeautifulSoup(page,"html.parser")
-            # whole_table=soup.find("table",attrs={"class":"infobox"})
-            # content=whole_table.text.strip()
             content=desoupify(final_url)
         except:
             #This is for situtions like New York
@@ -45,10 +43,6 @@ while(True):
                 # city+="_city"
                 city+=" City"
                 final_url=(wiki_url+city).replace(" ","_")
-                # page=urlopen(final_url)
-                # soup=BeautifulSoup(page,"html.parser")
-                # whole_table=soup.find("table",attrs={"class":"infobox"})
-                # content=whole_table.text.strip()
                 content=desoupify(final_url)
             except:
                 raise Exception("no results found")
@@ -102,3 +96,5 @@ while(True):
         break
     else:
         print("Sorry, can't find anything, please try again\n")
+
+
