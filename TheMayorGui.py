@@ -8,7 +8,6 @@ This is the GUI part
 #gui libraries
 import sys
 from PyQt5 import QtGui,QtWidgets,QtCore
-#from PyQt5 import 
 
 #logic libraries
 from FindTheMayorOnClass import FindTheMayor
@@ -18,11 +17,11 @@ class Window(QtWidgets.QMainWindow):
     def __init__(self):
         self.myx=10 #distance of boxes from left
         self.myy=25 #distance of boxes from top
-        self.mydistance=130 #distance between left edges of the boxes
-        self.mysize=(100,35) #size of the boxes
+        self.mysize=(200,60) #size of the boxes
+        self.mydistance=self.mysize[0]+self.myx #distance between left edges of the boxes
 
         super().__init__()
-        self.setGeometry(200,200,self.mydistance*2,self.myy*4)
+        self.setGeometry(200,200,self.mysize[0]*2+self.myx*3,self.mysize[1]*2.5)
         self.setWindowTitle("FindTheMayor")
 
         self.box_init()
@@ -55,7 +54,8 @@ class Window(QtWidgets.QMainWindow):
     
     def button_init(self):
         self.button=QtWidgets.QPushButton("Find The Mayor",self)
-        self.button.move(self.mydistance/2+self.myx,self.myy*2.5)
+        self.button.resize(self.mysize[0],self.mysize[1]-12)
+        self.button.move(self.mydistance/2,self.mysize[1]*1.5)
         self.button.clicked.connect(self.click_find)
 
     def action_init(self):
